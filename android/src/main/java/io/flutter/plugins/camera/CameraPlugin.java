@@ -412,7 +412,7 @@ public class CameraPlugin implements MethodCallHandler {
         videoSize = sizes[0];
       } else {
         float captureSizeRatio = (float) captureSize.getWidth() / captureSize.getHeight();
-		Log.e("capture:", captureSizeRatio + "");
+		Log.e("captureSizeRatio:", captureSizeRatio + "");
 
         previewSize = goodEnough.get(0);
         for (Size s : goodEnough) {
@@ -443,6 +443,7 @@ public class CameraPlugin implements MethodCallHandler {
           Collections.max(
               Arrays.asList(streamConfigurationMap.getOutputSizes(ImageFormat.JPEG)),
               new CompareSizesByArea());
+	  Log.e("captureSize:", captureSize.getWidth() + ":" + captureSize.getHeight());
     }
 
     private void prepareMediaRecorder(String outputFilePath) throws IOException {
