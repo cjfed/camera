@@ -397,7 +397,6 @@ public class CameraPlugin implements MethodCallHandler {
 
       List<Size> goodEnough = new ArrayList<>();
       for (Size s : sizes) {
-		Log.e("size:", s.getWidth() + ":" + s.getHeight());
         if (minHeight <= s.getHeight()
             && s.getWidth() <= screenWidth
             && s.getHeight() <= screenHeight
@@ -413,9 +412,11 @@ public class CameraPlugin implements MethodCallHandler {
         videoSize = sizes[0];
       } else {
         float captureSizeRatio = (float) captureSize.getWidth() / captureSize.getHeight();
+		Log.e("capture:", captureSizeRatio + "");
 
         previewSize = goodEnough.get(0);
         for (Size s : goodEnough) {
+		  Log.e("size:", s.getWidth() + ":" + s.getHeight());
           if ((float) s.getWidth() / s.getHeight() == captureSizeRatio) {
             previewSize = s;
             break;
