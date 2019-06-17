@@ -379,7 +379,7 @@ public class CameraPlugin implements MethodCallHandler {
     private void computeBestPreviewAndRecordingSize(
         StreamConfigurationMap streamConfigurationMap, int minHeight, Size captureSize) {
       Size[] sizes = streamConfigurationMap.getOutputSizes(SurfaceTexture.class);
-	  Log.e("size:", sizes.toString());
+	  
       // Preview size and video size should not be greater than screen resolution or 1080.
       Point screenResolution = new Point();
 
@@ -397,6 +397,7 @@ public class CameraPlugin implements MethodCallHandler {
 
       List<Size> goodEnough = new ArrayList<>();
       for (Size s : sizes) {
+		Log.e("size:", s.getWidth() + ":" + s.getHeight());
         if (minHeight <= s.getHeight()
             && s.getWidth() <= screenWidth
             && s.getHeight() <= screenHeight
