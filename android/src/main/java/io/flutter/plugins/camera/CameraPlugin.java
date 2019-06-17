@@ -412,6 +412,7 @@ public class CameraPlugin implements MethodCallHandler {
         videoSize = sizes[0];
       } else {
         float captureSizeRatio = (float) captureSize.getWidth() / captureSize.getHeight();
+		captureSizeRatio = (float) 16 / 9;
 		Log.e("captureSizeRatio:", captureSizeRatio + "");
 
         previewSize = goodEnough.get(0);
