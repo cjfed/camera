@@ -47,6 +47,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import android.util.Log;
 
 public class CameraPlugin implements MethodCallHandler {
 
@@ -378,7 +379,7 @@ public class CameraPlugin implements MethodCallHandler {
     private void computeBestPreviewAndRecordingSize(
         StreamConfigurationMap streamConfigurationMap, int minHeight, Size captureSize) {
       Size[] sizes = streamConfigurationMap.getOutputSizes(SurfaceTexture.class);
-
+	  Log.e("size:", sizes.toString());
       // Preview size and video size should not be greater than screen resolution or 1080.
       Point screenResolution = new Point();
 
