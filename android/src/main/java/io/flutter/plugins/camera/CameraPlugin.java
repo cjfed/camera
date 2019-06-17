@@ -218,7 +218,6 @@ public class CameraPlugin implements MethodCallHandler {
     @Override
     public int compare(Size lhs, Size rhs) {
       // We cast here to ensure the multiplications won't overflow.
-	  Log.e("size:", lhs.getWidth() + ":" + rhs.getHeight());
       return Long.signum(
           (long) lhs.getWidth() * lhs.getHeight() - (long) rhs.getWidth() * rhs.getHeight());
     }
@@ -417,7 +416,6 @@ public class CameraPlugin implements MethodCallHandler {
 
         previewSize = goodEnough.get(0);
         for (Size s : goodEnough) {
-		  Log.e("size:", s.getWidth() + ":" + s.getHeight());
           if ((float) s.getWidth() / s.getHeight() == captureSizeRatio) {
             previewSize = s;
             break;
@@ -436,6 +434,10 @@ public class CameraPlugin implements MethodCallHandler {
     }
 
     private void computeBestCaptureSize(StreamConfigurationMap streamConfigurationMap) {
+	  for (Size s : Arrays.asList(streamConfigurationMap.getOutputSizes(ImageFormat.JPEG))) {
+        Log.e("size:", lhs.getWidth() + ":" + rhs.getHeight());
+      }
+		
       // For still image captures, we use the largest available size.
       captureSize =
           Collections.max(
