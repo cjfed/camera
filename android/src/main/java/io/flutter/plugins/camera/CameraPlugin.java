@@ -435,7 +435,7 @@ public class CameraPlugin implements MethodCallHandler {
 
     private void computeBestCaptureSize(StreamConfigurationMap streamConfigurationMap) {
 	  for (Size s : Arrays.asList(streamConfigurationMap.getOutputSizes(ImageFormat.JPEG))) {
-        Log.e("size:", lhs.getWidth() + ":" + rhs.getHeight());
+        Log.e("size:", s.getWidth() + ":" + s.getHeight());
       }
 		
       // For still image captures, we use the largest available size.
