@@ -22,6 +22,8 @@ import android.media.Image;
 import android.media.ImageReader;
 import android.media.MediaRecorder;
 import android.os.Build;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Size;
 import android.view.Display;
 import android.view.OrientationEventListener;
@@ -252,6 +254,7 @@ public class CameraPlugin implements MethodCallHandler {
     private MediaRecorder mediaRecorder;
     private boolean recordingVideo;
     private boolean enableAudio;
+    Handler backgroundHandler;
 
     Camera(
         final String cameraName,
@@ -564,6 +567,17 @@ public class CameraPlugin implements MethodCallHandler {
         }
       }
     }
+	
+	private Handler getBackgroundHandler() {
+        if (backgroundHandler == null) {
+            HandlerThread backgroundThread =
+                    new HandlerThread("catwindow", android.os.Process
+                            .THREAD_PRIORITY_BACKGROUND);
+            backgroundThread.start();
+            backgroundHandler = new Handler(backgroundThread.getLooper());
+        }
+        return backgroundHandler;
+    }
 
     private void takePicture(String filePath, @NonNull final Result result) {
       final File file = new File(filePath);
@@ -589,7 +603,7 @@ public class CameraPlugin implements MethodCallHandler {
               }
             }
           },
-          null);
+          getBackgroundHandler());
 
       try {
         final CaptureRequest.Builder captureBuilder =
