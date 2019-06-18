@@ -594,7 +594,7 @@ public class CameraPlugin implements MethodCallHandler {
           new ImageReader.OnImageAvailableListener() {
             @Override
             public void onImageAvailable(ImageReader reader) {
-              try (Image image = reader.acquireLatestImage()) {
+              try (Image image = reader.acquireNextImage()) {
                 ByteBuffer buffer = image.getPlanes()[0].getBuffer();
                 writeToFile(buffer, file);
                 result.success(null);
